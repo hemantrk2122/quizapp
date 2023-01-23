@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-welcom',
@@ -7,12 +7,11 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./welcom.component.css']
 })
 export class WelcomComponent implements OnInit {
-
-  constructor() { }
+  user: any;
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-  }
-  call(){
-    console.log("Clicked.....");
   }
 }
