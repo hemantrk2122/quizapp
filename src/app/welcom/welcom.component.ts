@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-welcom',
@@ -11,5 +12,7 @@ export class WelcomComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  call(){
+    console.log("Clicked.....");
+  }
 }
