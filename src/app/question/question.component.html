@@ -1,1 +1,70 @@
-<h1 style="font-family: cursive;text-align:center">Hello! {{user}}</h1>
+<!-- <h1 style="font-family: cursive;text-align:center">Hello! {{user}}</h1> -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="d-flex justify-content-between p-3">
+            <div class="image">
+                <img src="https://img.icons8.com/color/96/000000/angularjs.png"
+                    alt="logo"
+                    width="90">
+            </div>
+            <div class="quiz-header">
+                <h4 style="font-family: cursive;">Angular and TypeScript Quiz</h4>
+                <span style="font-style: italic;">Welcome {{user}}!!!</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around py-3">
+            <div class="score">
+                <h5>20 Points</h5>
+            </div>
+            <div class="question-remaining">
+                <span style="font-style: italic;">Question 1 of 10</span>
+            </div>
+            <div class="timer">
+                <h5>60 Sec ⏱️</h5>
+            </div>
+        </div>
+        <div class="progress mb-3" role="progressbar" aria-label="Example with
+            label"
+            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 10%">10%</div>
+        </div>
+        <div class="question">
+            <div class="card">
+                <h3>What is Angular?</h3>
+            </div>
+        </div>
+        <div class="options">
+            <ol>
+                <li>
+                    <div class="card">
+                        Framework
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        Library
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        Language
+                    </div>
+                </li>
+                <li>
+                    <div class="card">
+                        Search Engine
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button class="btn"><i class="fa text-primary fa-chevron-left fa-3x"
+                    aria-hidden="true"></i></button>
+            <button class="btn"><i class="fa text-primary fa-refresh fa-3x"
+                    aria-hidden="true"></i></button>
+            <button class="btn"><i class="fa text-primary fa-chevron-right
+                    fa-3x"
+                    aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
