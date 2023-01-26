@@ -19,6 +19,7 @@ export class QuestionComponent implements OnInit {
   public incorrectAnswer: number = 0;
   progress: string = "0";
   interval$: any;
+  isQuizCompleted: boolean=false;
   constructor(
     private router: ActivatedRoute,
     private qs: QuestionService
@@ -44,6 +45,10 @@ export class QuestionComponent implements OnInit {
     this.resetCounter();
   }
   answer(questionNumber:any, option:any){
+    if(questionNumber == this.questionList.length){
+      this.isQuizCompleted = true;
+      this.stopCounter();
+    }
     // if(this.correctAnswer+this.incorrectAnswer != this.questionList.length){
       if(option.correct){
         this.points+=4;
