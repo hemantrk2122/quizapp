@@ -44,23 +44,28 @@ export class QuestionComponent implements OnInit {
     this.resetCounter();
   }
   answer(questionNumber:any, option:any){
-    if(this.correctAnswer+this.incorrectAnswer != this.questionList.length){
+    // if(this.correctAnswer+this.incorrectAnswer != this.questionList.length){
       if(option.correct){
         this.points+=4;
         this.correctAnswer++;
-        if(this.currentQuestion<this.questionList.length-1)
-        this.currentQuestion++;
-        this.resetCounter();
-        this.getProgressPerc();
+        setTimeout(()=>{
+          // if(this.currentQuestion<this.questionList.length-1)
+          this.currentQuestion++;
+          this.resetCounter();
+          this.getProgressPerc();
+        },1000);
+        
       }else{
+        setTimeout(()=>{
+          this.incorrectAnswer++;
+          // if(this.currentQuestion<this.questionList.length-1)
+          this.currentQuestion++;
+          this.resetCounter();
+          this.getProgressPerc();
+        },1000);
         this.points-=1;
-        this.incorrectAnswer++;
-        if(this.currentQuestion<this.questionList.length-1)
-        this.currentQuestion++;
-        this.resetCounter();
-        this.getProgressPerc();
       }
-    }
+    // }
     
   }
   startCounter(){

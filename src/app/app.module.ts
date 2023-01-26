@@ -9,13 +9,15 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChangeBgDirective } from './change-bg.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomComponent,
     QuestionComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChangeBgDirective
   ],
   imports: [
     BrowserModule,
