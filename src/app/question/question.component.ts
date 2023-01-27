@@ -49,29 +49,24 @@ export class QuestionComponent implements OnInit {
       this.isQuizCompleted = true;
       this.stopCounter();
     }
-    // if(this.correctAnswer+this.incorrectAnswer != this.questionList.length){
-      if(option.correct){
-        this.points+=4;
-        this.correctAnswer++;
-        setTimeout(()=>{
-          // if(this.currentQuestion<this.questionList.length-1)
-          this.currentQuestion++;
-          this.resetCounter();
-          this.getProgressPerc();
-        },1000);
-        
-      }else{
-        setTimeout(()=>{
-          this.incorrectAnswer++;
-          // if(this.currentQuestion<this.questionList.length-1)
-          this.currentQuestion++;
-          this.resetCounter();
-          this.getProgressPerc();
-        },1000);
-        this.points-=1;
-      }
-    // }
-    
+    if(option.correct){
+      this.points+=4;
+      this.correctAnswer++;
+      setTimeout(()=>{
+        this.currentQuestion++;
+        this.resetCounter();
+        this.getProgressPerc();
+      },1000);
+      
+    }else{
+      setTimeout(()=>{
+        this.incorrectAnswer++;
+        this.currentQuestion++;
+        this.resetCounter();
+        this.getProgressPerc();
+      },1000);
+      this.points-=1;
+    }    
   }
   startCounter(){
     this.interval$ = interval(1000).subscribe(val=>{
