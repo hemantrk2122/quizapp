@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from '../service/question.service';
 import { interval } from 'rxjs';
+import { AnsweredQuestion } from './question.interface';
 
 @Component({
   selector: 'app-question',
@@ -20,6 +21,7 @@ export class QuestionComponent implements OnInit {
   progress: string = "0";
   interval$: any;
   isQuizCompleted: boolean=false;
+  answeredQuestion: AnsweredQuestion[]=[];
   constructor(
     private router: ActivatedRoute,
     private qs: QuestionService
@@ -34,6 +36,12 @@ export class QuestionComponent implements OnInit {
   getAllQuestions(){
     this.qs.getQuestionJson().subscribe(res=>{
       this.questionList = res.questions;
+      for(let i = 0;i<this.questionList.length;i++){
+        this.answeredQuestion.push({
+          questionNumber: i,
+          isAnswered: false
+        });
+      }
     });
   }
   nextQuestion(){
@@ -49,23 +57,32 @@ export class QuestionComponent implements OnInit {
       this.isQuizCompleted = true;
       this.stopCounter();
     }
-    if(option.correct){
-      this.points+=4;
-      this.correctAnswer++;
-      setTimeout(()=>{
-        this.currentQuestion++;
-        this.resetCounter();
-        this.getProgressPerc();
-      },1000);
-      
-    }else{
-      setTimeout(()=>{
-        this.incorrectAnswer++;
-        this.currentQuestion++;
-        this.resetCounter();
-        this.getProgressPerc();
-      },1000);
-      this.points-=1;
+    console.log(questionNumber+" "+this.correctAnswer+" "+this.incorrectAnswer);
+    if(this.answeredQuestion[questionNumber-1].isAnswered == true){
+      alert("Already Answered!");
+      this.nextQuestion();
+    }
+    else{
+      if(option.correct){
+        this.points+=4;
+        this.correctAnswer++;
+        this.answeredQuestion[questionNumber-1].isAnswered = true;
+        setTimeout(()=>{
+          this.currentQuestion++;
+          this.resetCounter();
+          this.getProgressPerc();
+        },1000);
+        
+      }else{
+        setTimeout(()=>{
+          this.incorrectAnswer++;
+          this.currentQuestion++;
+          this.resetCounter();
+          this.getProgressPerc();
+        },1000);
+        this.points-=1;
+        this.answeredQuestion[questionNumber-1].isAnswered = true;
+      }
     }    
   }
   startCounter(){
@@ -96,6 +113,12 @@ export class QuestionComponent implements OnInit {
     this.counter = 60;
     this.currentQuestion = 0;
     this.progress = "0";
+    this.answeredQuestion=[];
+    this.correctAnswer = 0;
+    this.incorrectAnswer = 0;
+    // for(let i = 0;i<this.questionList.length;i++){
+    //   this.answeredQuestion.push({questionNumber:i,isAnswered:false});
+    // }
   }
   getProgressPerc(){
     this.progress = ((this.currentQuestion/this.questionList.length)*100).toString();
